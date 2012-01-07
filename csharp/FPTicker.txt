@@ -1,3 +1,5 @@
+// This segment is writen in C#
+
 // This is in a Text file since it will not compile as is.
 // You will need to put this into a method in a empty windows forms project, then add a WebBrowser, put the HTML variable into the browser.
 // This will remove the event log stuff
