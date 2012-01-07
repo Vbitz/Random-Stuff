@@ -1,0 +1,25 @@
+// This is in a Text file since it will not compile as is.
+// You will need to put this into a method in a empty windows forms project, then add a WebBrowser, put the HTML variable into the browser.
+// This will remove the event log stuff
+
+Stack<string> html = new Stack<string>();
+XmlReader reader = XmlReader.Create("http://facepunch.com/fp_ticker.php?aj=1");
+while (!reader.EOF)
+{
+	reader.Read();
+	if (reader.Name == "post" && reader.AttributeCount > 0)
+	{
+		string str = reader.GetAttribute("html");
+		if (str.Contains("forums") && !str.Contains("closed"))
+		{
+			html.Push(str);   
+		}
+	}
+}
+
+string HTML = "";
+
+while (html.Count > 0)
+{
+	HTML += html.Pop();
+}
