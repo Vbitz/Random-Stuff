@@ -39,9 +39,9 @@ namespace MazeGenerator2
                 }
             }
 
-            StreamWriter writer = new StreamWriter("out.vmf");
+            //StreamWriter writer = new StreamWriter("out.vmf");
 
-            writer.WriteLine(File.ReadAllText("head.txt"));
+            //writer.WriteLine(File.ReadAllText("head.txt"));
 
             Bitmap bmp = new Bitmap(width * scale + 1, height * scale + 1);
             Graphics gra = Graphics.FromImage(bmp);
@@ -55,13 +55,13 @@ namespace MazeGenerator2
                     if (ItemArray[x, y] && ItemArray[x + 1, y])
                     {
                         DrawLine(gra, true, x, y, x + 1, y);
-                        add_brush(writer, x * scale - 4, y * scale - 4, 0, ((x + 1) - x) * scale + 4, 4, 32);
+                        //add_brush(writer, x * scale - 4, y * scale - 4, 0, ((x + 1) - x) * scale + 4, 4, 32);
                     }
 
                     if (ItemArray[x, y] && ItemArray[x, y + 1])
                     {
                         DrawLine(gra, true, x, y, x, y + 1);
-                        add_brush(writer, x, y, 0, x, ((y + 1) - y), 32);
+                        //add_brush(writer, x, y, 0, x, ((y + 1) - y), 32);
                     }
                 }
             }
@@ -103,9 +103,9 @@ namespace MazeGenerator2
 
             bmp.Save("out.png");
 
-            writer.WriteLine(File.ReadAllText("foot.txt"));
+            //writer.WriteLine(File.ReadAllText("foot.txt"));
 
-            writer.Close();
+            //writer.Close();
         }
 
         static void add_brush(StreamWriter writer, int x0, int y0, int z0, int x1, int y1, int z1)
