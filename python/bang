@@ -1,0 +1,61 @@
+#!/opt/local/bin/python
+
+# i'm now cooking in python	
+
+import csv;
+import sys;
+
+# EDIT ME FIRST
+filename = "";
+
+if (filename == ""):
+	print("You need a filename");
+	sys.exit(-1);
+
+list = False;
+added = False;
+
+key = "";
+value = "";
+
+items = {};
+
+search = "ckrasvgfoifa"; # ugly i know but who has that as a key
+
+if (len(sys.argv) != 3):
+	added = True;
+	if (len(sys.argv) == 2):
+		search = sys.argv[1];
+	else:
+		print("Usage : bang [key value]\n");
+		list = True;
+else:
+	key = sys.argv[1];
+	value = sys.argv[2];
+
+csvRead = csv.reader(open(filename, "r"), delimiter=',', quotechar='\"');
+
+for line in csvRead:
+	if (len(line) < 2):
+		continue;
+	if (list & (search == "ckrasvgfoifa")):
+		print(line[0] + " : [" + line[1] + "]");
+	if (str.find(line[0], search) > -1):
+		print(line[0] + " : [" + line[1] + "]");
+	if (key == line[0]):
+		items[key] = value;
+		added = True;
+	else:
+		items[line[0]] = line[1];
+
+if (not added):
+	items[key] = value;
+
+csvRead = None;
+
+csvWrite = csv.writer(open(filename, "w"), delimiter=',', quotechar='\"');
+
+for item in items.items():
+	csvWrite.writerow(item);
+
+csvWrite = None;
